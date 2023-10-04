@@ -29,6 +29,14 @@ public class Node {
         this.firstEdge = firstEdge;
     }
 
+    public Object getNodeData() {
+        return this.nodeData;
+    }
+
+    public void setNodeData(Object data) {
+        this.nodeData = data;
+    }
+
     /**
      * Returns the node data as a string.
      * For use in toString methods.

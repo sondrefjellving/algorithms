@@ -12,6 +12,8 @@ public class Main {
             Graph graph = getGraph(br);
 
             System.out.println(graph.toString());
+            graph.bfs(graph.getNode(1));
+            System.out.println(graph.toString());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
