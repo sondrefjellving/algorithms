@@ -63,4 +63,42 @@ public class Graph {
 
         return sb.toString();
     }
+
+    class Topo_lst {
+        boolean found;
+        Node next;
+    }
+
+    /**
+     * Recursive method that finds the topological order of the graph.
+     * @param n starting node.
+     * @param l node list
+     * @return the topological order of the graph.
+     */
+    Node df_topo(Node n, Node l) {
+        Topo_lst nodeData = (Topo_lst) n.getNodeData();
+        if (nodeData.found) return l;
+        nodeData.found = true;
+        for (Edge e = n.getFirstEdge(); e != null; e = e.getNextEdge()) {
+            l = df_topo(e.getToNode(), l);
+        }
+        nodeData.next = l;
+        return n;
+    }
+
+    /**
+     * Method that finds the topological order of the graph.
+     * @return  the topological order of the graph.
+     */
+    Node topologisort() {
+        Node l = null;
+        for (int i = numberOfNodes; i-- > 0;) {
+            nodes[i].setNodeData(new Topo_lst());
+        }
+
+        for (int i = N; i-- > 0;) {
+            l = df_topo(nodes[i], l);
+        }
+        return l;
+    }
 }
